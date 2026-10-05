@@ -48,7 +48,8 @@ export class WeatherService {
             timezone: query.timezone || 'auto',
             hourly: 'temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m',
             current: 'temperature_2m,precipitation,wind_speed_10m',
-            forecast_days: 3,
+            daily: 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,sunrise,sunset',
+            forecast_days: 7,
           },
           timeout: 5000,
         }),
@@ -63,6 +64,7 @@ export class WeatherService {
         },
         current: data.current,
         hourlyForecast: data.hourly,
+        dailyForecast: data.daily,
       };
     } catch (error: any) {
       this.logger.error('Erro na chamada Open-Meteo:', error?.response?.data || error?.message);
